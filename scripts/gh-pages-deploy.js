@@ -13,6 +13,12 @@ const runCommand = command => {
 try {
     console.log(chalk.cyan('Deploy started'));
 
+    console.log('\n' + chalk.cyan('Committing uncommitted changes'));
+    runCommand('git add .');
+    runCommand('git commit -m "Develop"');
+    runCommand('git pull');
+    runCommand('git push');
+
     console.log('\n' + chalk.cyan('Build project'));
     runCommand(`git checkout --orphan ${PAGES_BRANCH_NAME}`);
     runCommand('npm run build');
