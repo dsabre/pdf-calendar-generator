@@ -1,7 +1,7 @@
 
 # PDF calendar generator
 
-Generate a PDF calendar in A4 format ready to print.
+Site that generate a PDF calendar in A4 format ready to print.
 
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg?cacheSeconds=2592000)
