@@ -35,15 +35,6 @@ npm run serve
 ```
 
 
-## Deployment
-
-To deploy this project run
-
-```bash
-  npm run deploy
-```
-
-
 ## Authors
 
 - [Daniele Sabre](https://www.danielesabre.com)
