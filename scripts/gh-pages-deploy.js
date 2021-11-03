@@ -23,7 +23,7 @@ try {
 
     console.log(chalk.cyan(`Pushing to ${PAGES_BRANCH_NAME}...`));
 
-    runCommand(`git push origin HEAD: ${PAGES_BRANCH_NAME} --force`);
+    runCommand(`git push origin HEAD:${PAGES_BRANCH_NAME} --force`);
     runCommand(`rm -rf ${folderName}`);
     runCommand(`git checkout -f ${MAIN_BRANCH_NAME}`);
     runCommand(`git branch -D  ${PAGES_BRANCH_NAME}`);
