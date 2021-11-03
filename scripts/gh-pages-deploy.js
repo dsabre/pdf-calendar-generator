@@ -2,8 +2,8 @@ const {execSync} = require("child_process");
 const fs         = require("fs");
 const chalk      = require("chalk");
 
+// github branch pages name
 const PAGES_BRANCH_NAME = 'gh-pages';
-const MAIN_BRANCH_NAME  = 'main';
 
 const execSyncVerbose = command => {
     console.log(command);
@@ -11,13 +11,21 @@ const execSyncVerbose = command => {
 };
 
 try {
-    console.log(chalk.cyan('Deploy started'));
+    // get current branch name
+    let currentBranch = execSync("git branch |grep \\* |sed 's/\\* //g'");
+    currentBranch     = currentBranch.toString().trim();
 
-    console.log('\n' + chalk.cyan('Committing uncommitted changes'));
-    execSyncVerbose('git add .');
-    execSyncVerbose('git commit -m "Develop"');
-    execSyncVerbose('git pull');
-    execSyncVerbose('git push');
+    console.log(chalk.cyan('Deploy started from branch') + ' ' + chalk.bgBlue(chalk.yellowBright(currentBranch)));
+
+    try {
+        console.log('\n' + chalk.cyan('Committing uncommitted changes'));
+        execSyncVerbose('git add .');
+        execSyncVerbose('git commit -m "Develop"');
+        execSyncVerbose('git pull');
+        execSyncVerbose('git push');
+    } catch (err) {
+        console.error(chalk.yellow('Nothing to commit'));
+    }
 
     console.log('\n' + chalk.cyan('Build project'));
     execSyncVerbose(`git checkout --orphan ${PAGES_BRANCH_NAME}`);
@@ -31,13 +39,13 @@ try {
     console.log('\n' + chalk.cyan(`Pushing to ${PAGES_BRANCH_NAME}`));
     execSyncVerbose(`git push origin HEAD:${PAGES_BRANCH_NAME} --force`);
 
-    console.log('\n' + chalk.cyan(`Return to ${MAIN_BRANCH_NAME} branch`));
+    console.log('\n' + chalk.cyan(`Return to ${currentBranch} branch`));
     execSyncVerbose(`rm -rf ${folderName}`);
-    execSyncVerbose(`git checkout -f ${MAIN_BRANCH_NAME}`);
+    execSyncVerbose(`git checkout -f ${currentBranch}`);
     execSyncVerbose(`git branch -D ${PAGES_BRANCH_NAME}`);
 
     console.log('\n' + chalk.green('SUCCESSFULLY DEPLOYED'));
 } catch (err) {
-    console.log(chalk.red(err.message));
+    console.error(chalk.red(err.message));
     process.exit(1);
 }
