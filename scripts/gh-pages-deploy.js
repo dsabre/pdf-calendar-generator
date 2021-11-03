@@ -3,7 +3,7 @@ const fs         = require("fs");
 const chalk      = require("chalk");
 
 const PAGES_BRANCH_NAME = 'gh-pages';
-const MAIN_BRANCH_NAME = 'main';
+const MAIN_BRANCH_NAME  = 'main';
 
 const runCommand = command => {
     console.log(command);
@@ -11,12 +11,12 @@ const runCommand = command => {
 };
 
 try {
-    console.log(chalk.cyan('Building started...'));
+    console.log(chalk.cyan('Deploy started...'));
 
     runCommand(`git checkout --orphan ${PAGES_BRANCH_NAME}`);
     runCommand('npm run build');
 
-    const folderName = fs.existsSync("dist") ? "dist" : "build";
+    const folderName = fs.existsSync('dist') ? 'dist' : 'build';
 
     runCommand(`git --work-tree ${folderName} add --all`);
     runCommand(`git --work-tree ${folderName} commit -m "GitHub pages deploy"`);
@@ -28,8 +28,8 @@ try {
     runCommand(`git checkout -f ${MAIN_BRANCH_NAME}`);
     runCommand(`git branch -D ${PAGES_BRANCH_NAME}`);
 
-    console.log(chalk.green('Successfully deployed, check your settings'));
+    console.log(chalk.green('SUCCESSFULLY DEPLOYED'));
 } catch (err) {
-    console.log(err.message);
+    console.log(chalk.red(err.message));
     process.exit(1);
 }
