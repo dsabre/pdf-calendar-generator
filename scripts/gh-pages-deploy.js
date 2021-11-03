@@ -26,7 +26,7 @@ try {
     runCommand(`git push origin HEAD:${PAGES_BRANCH_NAME} --force`);
     runCommand(`rm -rf ${folderName}`);
     runCommand(`git checkout -f ${MAIN_BRANCH_NAME}`);
-    runCommand(`git branch -D  ${PAGES_BRANCH_NAME}`);
+    runCommand(`git branch -D ${PAGES_BRANCH_NAME}`);
 
     console.log(chalk.green('Successfully deployed, check your settings'));
 } catch (err) {
