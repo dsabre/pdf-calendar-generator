@@ -1,17 +1,17 @@
 <template>
 	<div id="app">
         <div class="container">
-            <h1>PDF calendars generator</h1>
+            <h1>Generatore calendari PDF</h1>
 
             <div>
-                <h3>Weekly planner</h3>
+                <h3>Planner settimanale</h3>
                 <FormWeek/>
             </div>
 
             <hr>
 
             <div>
-                <h3>Montly planner</h3>
+                <h3>Planner mensile</h3>
                 <FormMonth/>
             </div>
         </div>

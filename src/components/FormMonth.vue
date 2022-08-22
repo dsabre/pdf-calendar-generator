@@ -1,11 +1,11 @@
 <template>
     <form v-on:submit="onSubmit">
         <div class="mb-3">
-            <label for="month" class="form-label">Select month to generate *</label>
+            <label for="month" class="form-label">Seleziona il mese da generare *</label>
             <input v-model="month" type="month" class="form-control rounded-0" id="month" required>
         </div>
         <div class="d-grid gap-2">
-            <button type="submit" class="btn btn-primary btn-lg rounded-0">Generate monthly planner</button>
+            <button type="submit" class="btn btn-primary btn-lg rounded-0">Genera planner mensile</button>
         </div>
     </form>
 </template>
@@ -156,8 +156,8 @@ export default {
             // Load a PDFDocument from the existing PDF bytes
             const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
-            pdfDoc.setTitle('Calendar ' + monthName + ' ' + year);
-            pdfDoc.setSubject('Calendar ' + monthName + ' ' + year);
+            pdfDoc.setTitle('Calendario ' + monthName + ' ' + year);
+            pdfDoc.setSubject('Calendario ' + monthName + ' ' + year);
             pdfDoc.setProducer('PDF calendars generator by Daniele Sabre');
             pdfDoc.setKeywords(['calendar', monthName, year]);
             pdfDoc.setCreationDate(new Date());
@@ -203,7 +203,6 @@ export default {
                 datesChunks.push(dates.slice(i, i + chunkSize));
             }
 
-            console.clear();
             datesChunks.forEach((dates, index1) => {
                 dates.forEach((date, index2) => {
                     date = date.split('-').map(i => parseInt(i));

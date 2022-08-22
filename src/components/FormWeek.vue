@@ -157,9 +157,9 @@ export default {
 			// Load a PDFDocument from the existing PDF bytes
 			const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
-			pdfDoc.setTitle('Week calendar ' + week + ' year ' + year);
-			pdfDoc.setSubject('Week calendar ' + week + ' year ' + year);
-			pdfDoc.setAuthor(this.property || 'Daniele Sabre');
+			pdfDoc.setTitle('Calendario settimana ' + week + ' anno ' + year);
+			pdfDoc.setSubject('Calendario settimana ' + week + ' anno ' + year);
+			pdfDoc.setAuthor(this.property || 'No author');
             pdfDoc.setProducer('PDF calendars generator by Daniele Sabre');
 			pdfDoc.setKeywords(['calendar', this.week]);
 			pdfDoc.setCreationDate(new Date());
