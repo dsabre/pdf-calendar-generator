@@ -1,21 +1,17 @@
 <template>
-	<div class="container">
-		<h1>PDF calendar generator</h1>
-
-		<form v-on:submit="onSubmit">
-			<div class="mb-3">
-				<label for="week" class="form-label">Select week to generate *</label>
-				<input v-model="week" type="week" class="form-control rounded-0" id="week" required>
-			</div>
-			<div class="mb-3">
-				<label for="property" class="form-label">Property of</label>
-				<input v-model="property" type="text" class="form-control rounded-0" id="property">
-			</div>
-			<div class="d-grid gap-2">
-				<button type="submit" class="btn btn-primary btn-lg rounded-0">Generate</button>
-			</div>
-		</form>
-	</div>
+    <form v-on:submit="onSubmit">
+        <div class="mb-3">
+            <label for="week" class="form-label">Select week to generate *</label>
+            <input v-model="week" type="week" class="form-control rounded-0" id="week" required>
+        </div>
+        <div class="mb-3">
+            <label for="property" class="form-label">Property of</label>
+            <input v-model="property" type="text" class="form-control rounded-0" id="property">
+        </div>
+        <div class="d-grid gap-2">
+            <button type="submit" class="btn btn-primary btn-lg rounded-0">Generate weekly planner</button>
+        </div>
+    </form>
 </template>
 
 <script>
@@ -123,7 +119,7 @@ const IS_DEV            = process.env.NODE_ENV === 'development';
 const localStorageCache = new LocalStorageCache();
 
 export default {
-	name: "Form",
+	name: "FormWeek",
 	data() {
 		return {
 			week:     moment().year() + '-W' + moment().week(),
@@ -155,17 +151,17 @@ export default {
 		},
 		createPdf:             async function (dates, year, startMonth, endMonth, week) {
 			// Fetch an existing PDF document
-			const basePdfUrl       = location.href.split('index.html').join('') + '/base.pdf';
+			const basePdfUrl       = location.href.split('index.html').join('') + '/week.pdf';
 			const existingPdfBytes = await fetch(basePdfUrl).then(res => res.arrayBuffer());
 
 			// Load a PDFDocument from the existing PDF bytes
 			const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
-			pdfDoc.setTitle('Calendario settimana ' + week + ' anno ' + year);
-			pdfDoc.setSubject('Calendario settimana ' + week + ' anno ' + year);
+			pdfDoc.setTitle('Week calendar ' + week + ' year ' + year);
+			pdfDoc.setSubject('Week calendar ' + week + ' year ' + year);
 			pdfDoc.setAuthor(this.property || 'Daniele Sabre');
-			pdfDoc.setProducer('Generatore calendario Lary by Daniele Sabre');
-			pdfDoc.setKeywords(['calendario', this.week]);
+            pdfDoc.setProducer('PDF calendars generator by Daniele Sabre');
+			pdfDoc.setKeywords(['calendar', this.week]);
 			pdfDoc.setCreationDate(new Date());
 			pdfDoc.setModificationDate(new Date());
 
