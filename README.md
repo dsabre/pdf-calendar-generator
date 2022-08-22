@@ -25,13 +25,13 @@ Go to the project directory
 Install dependencies
 
 ```bash
-  npm install
+  yarn install
 ```
 
 Start server
 
 ```bash
-npm run serve
+  yarn serve
 ```
 
 
@@ -40,7 +40,7 @@ npm run serve
 To deploy this project run
 
 ```bash
-  npm run deploy
+  yarn deploy
 ```
 
 

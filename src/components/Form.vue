@@ -242,7 +242,7 @@ export default {
 
 				texts.push({
 					x:    x,
-					y:    551,
+					y:    534,
 					size: 12,
 					text: date
 				});
@@ -264,7 +264,7 @@ export default {
 
 			texts.forEach(options => {
 				options.font  = helveticaFont;
-				options.color = rgb(0.3, 0.3, 0.3);
+				options.color = rgb(0, 0, 0);
 
 				const text = options.text;
 
@@ -301,43 +301,43 @@ export default {
 				},
 				{
 					x:      103,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				},
 				{
 					x:      216,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				},
 				{
 					x:      339,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				},
 				{
 					x:      447,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				},
 				{
 					x:      551,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				},
 				{
 					x:      675,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				},
 				{
 					x:      782,
-					y:      547,
+					y:      529,
 					width:  30,
 					height: 5
 				}
